@@ -1,0 +1,4 @@
+/* Vite emits this file so StyleX can append compiled styles. */
+body {
+  margin: 0;
+}

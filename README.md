@@ -80,11 +80,15 @@ import 'stylex-tw-theme/reset.css'
 
 ## This repo
 
-pnpm + Turborepo. `packages/stylex-tw-theme` is the library. `apps/web` is a Vite React app that uses it.
+pnpm + Turborepo. `packages/stylex-tw-theme` is the library.
+
+- `apps/web` uses the workspace package.
+- `apps/web-npm` installs `stylex-tw-theme` from npm, so we can catch publish mistakes.
 
 ```bash
 pnpm install
 pnpm dev
+pnpm --filter web-npm dev
 ```
 
 Node 24 and pnpm 10. License is MIT.

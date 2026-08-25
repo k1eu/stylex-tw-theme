@@ -1,0 +1,45 @@
+{
+  "name": "stylex-tw-theme",
+  "version": "0.1.0",
+  "description": "Tailwind default tokens as StyleX defineVars and defineConsts.",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": ["**/*.css"],
+  "files": ["src"],
+  "exports": {
+    "./colors/*.stylex": "./src/colors/*.stylex.ts",
+    "./spacing.stylex": "./src/spacing.stylex.ts",
+    "./radius.stylex": "./src/radius.stylex.ts",
+    "./shadow.stylex": "./src/shadow.stylex.ts",
+    "./font.stylex": "./src/font.stylex.ts",
+    "./screens.stylex": "./src/screens.stylex.ts",
+    "./motion.stylex": "./src/motion.stylex.ts",
+    "./scale.stylex": "./src/scale.stylex.ts",
+    "./reset.css": "./src/reset.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/k1eu/stylex-tw-theme.git",
+    "directory": "packages/stylex-tw-theme"
+  },
+  "bugs": {
+    "url": "https://github.com/k1eu/stylex-tw-theme/issues"
+  },
+  "homepage": "https://github.com/k1eu/stylex-tw-theme#readme",
+  "keywords": [
+    "stylex",
+    "tailwind",
+    "design-tokens",
+    "theme",
+    "css"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@stylexjs/stylex": "^0.19.0"
+  },
+  "devDependencies": {
+    "@stylexjs/stylex": "^0.19.0"
+  }
+}

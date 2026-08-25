@@ -1,12 +1,17 @@
 import { useState } from 'react'
 import * as stylex from '@stylexjs/stylex'
+import { color } from 'stylex-tw-theme/colors/color.stylex'
+import { violet } from 'stylex-tw-theme/colors/violet.stylex'
+import { zinc } from 'stylex-tw-theme/colors/zinc.stylex'
+import { fontFamily, fontSize, fontWeight } from 'stylex-tw-theme/font.stylex'
+import { duration } from 'stylex-tw-theme/motion.stylex'
+import { radius } from 'stylex-tw-theme/radius.stylex'
+import { colorScheme, maxScreens } from 'stylex-tw-theme/screens.stylex'
+import { shadow } from 'stylex-tw-theme/shadow.stylex'
+import { spacing } from 'stylex-tw-theme/spacing.stylex'
 import heroImg from './assets/hero.png'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
-import { colors, fonts } from './tokens.stylex'
-
-const MOBILE = '@media (max-width: 1024px)'
-const DARK = '@media (prefers-color-scheme: dark)'
 
 const styles = stylex.create({
   root: {
@@ -20,23 +25,32 @@ const styles = stylex.create({
     textAlign: 'center',
     borderInlineWidth: 1,
     borderInlineStyle: 'solid',
-    borderInlineColor: colors.border,
-    fontFamily: fonts.sans,
-    fontSize: { default: 18, [MOBILE]: 16 },
+    borderInlineColor: {
+      default: zinc[200],
+      [colorScheme.dark]: zinc[800],
+    },
+    fontFamily: fontFamily.sans,
+    fontSize: { default: fontSize.lg, [maxScreens.lg]: fontSize.base },
     lineHeight: 1.45,
     letterSpacing: 0.18,
-    color: colors.text,
-    backgroundColor: colors.background,
+    color: {
+      default: zinc[500],
+      [colorScheme.dark]: zinc[400],
+    },
+    backgroundColor: {
+      default: color.white,
+      [colorScheme.dark]: zinc[900],
+    },
     colorScheme: 'light dark',
   },
   center: {
     display: 'flex',
     flexDirection: 'column',
     flexGrow: 1,
-    gap: { default: 25, [MOBILE]: 18 },
+    gap: { default: spacing[6], [maxScreens.lg]: spacing[4] },
     placeContent: 'center',
     placeItems: 'center',
-    padding: { default: null, [MOBILE]: '32px 20px 24px' },
+    padding: { default: null, [maxScreens.lg]: '32px 20px 24px' },
   },
   hero: {
     position: 'relative',
@@ -69,45 +83,63 @@ const styles = stylex.create({
       'perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg) scale(0.8)',
   },
   heading: {
-    fontFamily: fonts.sans,
-    fontWeight: 500,
-    color: colors.textHeading,
-    fontSize: { default: 56, [MOBILE]: 36 },
+    fontFamily: fontFamily.sans,
+    fontWeight: fontWeight.medium,
+    color: {
+      default: zinc[950],
+      [colorScheme.dark]: zinc[100],
+    },
+    fontSize: { default: fontSize['6xl'], [maxScreens.lg]: fontSize['4xl'] },
     letterSpacing: -1.68,
-    marginBlock: { default: 32, [MOBILE]: 20 },
+    marginBlock: { default: spacing[8], [maxScreens.lg]: spacing[5] },
   },
   copy: {
     margin: 0,
   },
   code: {
-    fontFamily: fonts.mono,
+    fontFamily: fontFamily.mono,
     display: 'inline-flex',
-    borderRadius: 4,
-    color: colors.textHeading,
-    fontSize: 15,
+    borderRadius: radius.default,
+    color: {
+      default: zinc[950],
+      [colorScheme.dark]: zinc[100],
+    },
+    fontSize: fontSize.sm,
     lineHeight: 1.35,
-    paddingInline: 8,
-    paddingBlock: 4,
-    backgroundColor: colors.codeBg,
+    paddingInline: spacing[2],
+    paddingBlock: spacing[1],
+    backgroundColor: {
+      default: zinc[100],
+      [colorScheme.dark]: zinc[800],
+    },
   },
   counter: {
-    fontFamily: fonts.mono,
+    fontFamily: fontFamily.mono,
     display: 'inline-flex',
-    fontSize: 16,
-    paddingInline: 10,
-    paddingBlock: 5,
-    borderRadius: 5,
-    color: colors.accent,
-    backgroundColor: colors.accentBg,
+    fontSize: fontSize.base,
+    paddingInline: spacing[2.5],
+    paddingBlock: spacing[1.5],
+    borderRadius: radius.md,
+    color: {
+      default: violet[600],
+      [colorScheme.dark]: violet[400],
+    },
+    backgroundColor: {
+      default: violet[100],
+      [colorScheme.dark]: violet[950],
+    },
     borderWidth: 2,
     borderStyle: 'solid',
     borderColor: {
       default: 'transparent',
-      ':hover': colors.accentBorder,
+      ':hover': {
+        default: violet[300],
+        [colorScheme.dark]: violet[700],
+      },
     },
     transitionProperty: 'border-color',
-    transitionDuration: '300ms',
-    marginBottom: 24,
+    transitionDuration: duration[300],
+    marginBottom: spacing[6],
     outlineWidth: {
       default: null,
       ':focus-visible': 2,
@@ -118,7 +150,10 @@ const styles = stylex.create({
     },
     outlineColor: {
       default: null,
-      ':focus-visible': colors.accent,
+      ':focus-visible': {
+        default: violet[600],
+        [colorScheme.dark]: violet[400],
+      },
     },
     outlineOffset: {
       default: null,
@@ -136,7 +171,10 @@ const styles = stylex.create({
       borderWidth: 5,
       borderStyle: 'solid',
       borderColor: 'transparent',
-      borderLeftColor: colors.border,
+      borderLeftColor: {
+        default: zinc[200],
+        [colorScheme.dark]: zinc[800],
+      },
     },
     '::after': {
       content: '""',
@@ -146,81 +184,102 @@ const styles = stylex.create({
       borderWidth: 5,
       borderStyle: 'solid',
       borderColor: 'transparent',
-      borderRightColor: colors.border,
+      borderRightColor: {
+        default: zinc[200],
+        [colorScheme.dark]: zinc[800],
+      },
     },
   },
   nextSteps: {
     display: 'flex',
-    flexDirection: { default: 'row', [MOBILE]: 'column' },
-    textAlign: { default: 'left', [MOBILE]: 'center' },
+    flexDirection: { default: 'row', [maxScreens.lg]: 'column' },
+    textAlign: { default: 'left', [maxScreens.lg]: 'center' },
     borderTopWidth: 1,
     borderTopStyle: 'solid',
-    borderTopColor: colors.border,
+    borderTopColor: {
+      default: zinc[200],
+      [colorScheme.dark]: zinc[800],
+    },
   },
   panel: {
     flexGrow: 1,
     flexShrink: 1,
     flexBasis: 0,
-    padding: { default: 32, [MOBILE]: '24px 20px' },
+    padding: { default: spacing[8], [maxScreens.lg]: '24px 20px' },
   },
   docs: {
-    borderRightWidth: { default: 1, [MOBILE]: 0 },
+    borderRightWidth: { default: 1, [maxScreens.lg]: 0 },
     borderRightStyle: 'solid',
-    borderRightColor: colors.border,
-    borderBottomWidth: { default: 0, [MOBILE]: 1 },
+    borderRightColor: {
+      default: zinc[200],
+      [colorScheme.dark]: zinc[800],
+    },
+    borderBottomWidth: { default: 0, [maxScreens.lg]: 1 },
     borderBottomStyle: 'solid',
-    borderBottomColor: colors.border,
+    borderBottomColor: {
+      default: zinc[200],
+      [colorScheme.dark]: zinc[800],
+    },
   },
   icon: {
-    marginBottom: 16,
+    marginBottom: spacing[4],
     width: 22,
     height: 22,
   },
   subheading: {
-    fontFamily: fonts.sans,
-    fontWeight: 500,
-    color: colors.textHeading,
-    fontSize: { default: 24, [MOBILE]: 20 },
+    fontFamily: fontFamily.sans,
+    fontWeight: fontWeight.medium,
+    color: {
+      default: zinc[950],
+      [colorScheme.dark]: zinc[100],
+    },
+    fontSize: { default: fontSize['2xl'], [maxScreens.lg]: fontSize.xl },
     lineHeight: 1.18,
     letterSpacing: -0.24,
     marginTop: 0,
-    marginBottom: 8,
+    marginBottom: spacing[2],
   },
   list: {
     listStyle: 'none',
     padding: 0,
     display: 'flex',
-    flexWrap: { default: null, [MOBILE]: 'wrap' },
-    justifyContent: { default: null, [MOBILE]: 'center' },
-    gap: 8,
-    marginTop: { default: 32, [MOBILE]: 20 },
+    flexWrap: { default: null, [maxScreens.lg]: 'wrap' },
+    justifyContent: { default: null, [maxScreens.lg]: 'center' },
+    gap: spacing[2],
+    marginTop: { default: spacing[8], [maxScreens.lg]: spacing[5] },
     marginBottom: 0,
     marginInline: 0,
   },
   listItem: {
-    flexGrow: { default: null, [MOBILE]: 1 },
-    flexShrink: { default: null, [MOBILE]: 1 },
-    flexBasis: { default: null, [MOBILE]: 'calc(50% - 8px)' },
+    flexGrow: { default: null, [maxScreens.lg]: 1 },
+    flexShrink: { default: null, [maxScreens.lg]: 1 },
+    flexBasis: { default: null, [maxScreens.lg]: 'calc(50% - 8px)' },
   },
   link: {
-    color: colors.textHeading,
-    fontSize: 16,
-    borderRadius: 6,
-    backgroundColor: colors.socialBg,
+    color: {
+      default: zinc[950],
+      [colorScheme.dark]: zinc[100],
+    },
+    fontSize: fontSize.base,
+    borderRadius: radius.md,
+    backgroundColor: {
+      default: zinc[100],
+      [colorScheme.dark]: zinc[800],
+    },
     display: 'flex',
-    paddingInline: 12,
-    paddingBlock: 6,
+    paddingInline: spacing[3],
+    paddingBlock: spacing[1.5],
     alignItems: 'center',
-    justifyContent: { default: null, [MOBILE]: 'center' },
-    gap: 8,
+    justifyContent: { default: null, [maxScreens.lg]: 'center' },
+    gap: spacing[2],
     textDecoration: 'none',
-    width: { default: null, [MOBILE]: '100%' },
+    width: { default: null, [maxScreens.lg]: '100%' },
     boxSizing: 'border-box',
     transitionProperty: 'box-shadow',
-    transitionDuration: '300ms',
+    transitionDuration: duration[300],
     boxShadow: {
-      default: 'none',
-      ':hover': colors.shadow,
+      default: shadow.none,
+      ':hover': shadow.md,
     },
   },
   logo: {
@@ -233,14 +292,17 @@ const styles = stylex.create({
   socialIcon: {
     filter: {
       default: 'none',
-      [DARK]: 'invert(1) brightness(2)',
+      [colorScheme.dark]: 'invert(1) brightness(2)',
     },
   },
   spacer: {
-    height: { default: 88, [MOBILE]: 48 },
+    height: { default: 88, [maxScreens.lg]: 48 },
     borderTopWidth: 1,
     borderTopStyle: 'solid',
-    borderTopColor: colors.border,
+    borderTopColor: {
+      default: zinc[200],
+      [colorScheme.dark]: zinc[800],
+    },
   },
 })
 
